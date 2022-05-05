@@ -133,7 +133,7 @@ def get_dataframe_from_npz(data_file):
     Returns:
         DataFrame: the unzip data.
     """
-    np_data = np.load(data_file)
+    np_data = np.load(data_file, allow_pickle=True)
     data_dic = {
         DEFAULT_USER_COL: np_data["user_ids"],
         DEFAULT_ITEM_COL: np_data["item_ids"],
