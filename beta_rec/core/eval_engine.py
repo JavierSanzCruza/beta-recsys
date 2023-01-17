@@ -248,7 +248,7 @@ class EvalEngine(object):
                 start_idx = idx * self.batch_size
                 end_idx = min((idx + 1) * self.batch_size, len(data_df))
                 
-                if len(data) == end_idx + 1:
+                if len(data_df) == end_idx + 1:
                     end_idx = len(data_df)
                 
                 sub_user_ids = user_ids[start_idx:end_idx]
