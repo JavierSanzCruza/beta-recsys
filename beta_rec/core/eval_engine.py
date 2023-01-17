@@ -257,6 +257,9 @@ class EvalEngine(object):
                     sub_user_ids = user_ids[start_idx:end_idx]
                     sub_item_ids = item_ids[start_idx:end_idx]
                 
+                print("User_ids:" + str(sub_user_ids))
+                print("Item_ids:" + str(sub_item_ids))
+                print("Start_idx: " + str(start_idx) + " End_idx: " + str(end_idx))
                 
                 sub_predictions = np.array(
                     model.predict(sub_user_ids, sub_item_ids)
