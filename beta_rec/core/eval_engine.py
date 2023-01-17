@@ -248,18 +248,11 @@ class EvalEngine(object):
                 start_idx = idx * self.batch_size
                 end_idx = min((idx + 1) * self.batch_size, len(data_df))
                 
-                if start_idx == end_idx - 1:
-                    sub_user_ids = []
-                    sub_item_ids = []
-                    sub_user_ids.append(user_ids[start_idx])
-                    sub_item_ids.append(item_ids[start_idx])
-                else:
-                    sub_user_ids = user_ids[start_idx:end_idx]
-                    sub_item_ids = item_ids[start_idx:end_idx]
+                if len(data) == end_idx + 1:
+                    end_idx = len(data_df)
                 
-                print("User_ids:" + str(sub_user_ids))
-                print("Item_ids:" + str(sub_item_ids))
-                print("Start_idx: " + str(start_idx) + " End_idx: " + str(end_idx))
+                sub_user_ids = user_ids[start_idx:end_idx]
+                sub_item_ids = item_ids[start_idx:end_idx]
                 
                 sub_predictions = np.array(
                     model.predict(sub_user_ids, sub_item_ids)
