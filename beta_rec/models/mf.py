@@ -36,6 +36,11 @@ class MF(torch.nn.Module):
             batch_data: tuple consists of (users, pos_items, neg_items), which must be LongTensor.
         """
         users, items = batch_data
+        
+        if not hasattr(users,'__len__'):
+            users = [users]
+            items = [items]
+            
         u_emb = self.user_emb(users)
         u_bias = self.user_bias(users)
         i_emb = self.item_emb(items)
