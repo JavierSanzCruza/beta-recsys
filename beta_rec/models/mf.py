@@ -37,10 +37,14 @@ class MF(torch.nn.Module):
         """
         users, items = batch_data
         
+        print(batch_data)
+        print(users)
+        print(items)
+                
         if not hasattr(users,'__len__'):
             users = [users]
             items = [items]
-            
+        
         u_emb = self.user_emb(users)
         u_bias = self.user_bias(users)
         i_emb = self.item_emb(items)
