@@ -212,6 +212,10 @@ class BaseData(object):
             item_tensor=torch.LongTensor(items).to(device),
             target_tensor=torch.FloatTensor(ratings).to(device),
         )
+        
+        if len(dataset)%batch_size == 1:
+            batch_size += 1
+            
         print(f"Making RatingDataset of length {len(dataset)}")
         return DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
@@ -250,6 +254,10 @@ class BaseData(object):
             neg_item_tensor=torch.LongTensor(neg_items).to(device),
         )
         print(f"Making PairwiseNegativeDataset of length {len(dataset)}")
+        
+        if len(dataset)%batch_size == 1:
+            batch_size += 1
+            
         return DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
     def instance_mul_neg_loader(self, batch_size, device, num_negative):
@@ -286,6 +294,10 @@ class BaseData(object):
             neg_item_tensor=torch.LongTensor(neg_items).to(device),
         )
         print(f"Making PairwiseNegativeDataset of length {len(dataset)}")
+        
+        if len(dataset)%batch_size == 1:
+            batch_size += 1
+            
         return DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
     def get_adj_mat(self, config):
